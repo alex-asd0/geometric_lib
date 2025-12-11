@@ -1,0 +1,32 @@
+name: CI
+on:
+    push:
+        branches: ["main"]
+
+jobs:
+    tests-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+            
+            - name: setup
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.x'
+                
+            - name: run
+              run: python3 -m unittest tests.py
+    tests-windows:
+        runs-on: windows-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+            
+            - name: setup
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.x'
+
+            - name: run
+              run: python -m unittest tests.py
